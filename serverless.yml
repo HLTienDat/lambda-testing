@@ -1,0 +1,26 @@
+
+service: myservice
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: go1.x
+
+package:
+  patterns:
+    - '!./**'
+    - ./bin/**
+
+functions:
+  hello:
+    handler: bin/hello
+    events:
+      - httpApi:
+          path: /hello
+          method: get
+  world:
+    handler: bin/world
+    events:
+      - httpApi:
+          path: /world
+          method: get
